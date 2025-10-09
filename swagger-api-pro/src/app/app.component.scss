@@ -1,0 +1,101 @@
+.sidebar {
+  width: 200px;
+  background-color: #f8f9fa;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar li:hover {
+  background-color: #e9ecef;
+}
+
+.sidebar li.active {
+  background-color: #007bff;
+  color: white;
+}
+
+// .submenu-card {
+//   background-color: white;
+//   border-radius: 8px;
+//   margin: 20px 40px;
+//   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+// }
+
+// .submenu-card {
+//   position: absolute;
+//   top: 0;
+//   left: 100%; /* Pushes the submenu to the right of sidebar */
+//   width: 200px;
+//   background-color: white;
+//   border-radius: 8px;
+//   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+//   z-index: 1001;
+// }
+  
+
+// working code 
+// .submenu-card {
+//   position: fixed;
+//   top: 0;
+//   left: 220px; /* Place it exactly outside the sidebar */
+//   width: 220px;
+//   background-color: white;
+//   border-radius: 8px;
+//   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+//   z-index: 1100;
+//   padding: 8px 0;
+// }
+
+/* ✅ Submenu card positioned OUTSIDE the sidebar */
+.submenu-card {
+  position: fixed;
+  top: 0;
+  left: 220px; /* Place to the right of the sidebar */
+  width: 220px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1100;
+  padding: 8px 0;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease-in-out; /* 👈 smooth slide effect */
+}
+
+/* ✅ When submenu is active (visible) */
+.submenu-card.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.submenu-card li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.submenu-card li:hover {
+  background-color: #f1f1f1;
+}
+
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+}
