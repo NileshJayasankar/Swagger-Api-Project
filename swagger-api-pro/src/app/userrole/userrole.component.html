@@ -1,0 +1,157 @@
+<div class="mt-4">
+
+    <div class="row mb-4" *ngIf="userroleCount !== null">
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm border-primary">
+                <div class="card-body count">
+                    <h5 class="card-title ">Total Userroles</h5>
+                    <h3 class="fw-bold ">{{ userroleCount }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!showForm" class="mb-3">
+        <button class="btn btn-primary" (click)="openForm()">
+            Add User role
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </div>
+
+
+
+    <div class="card shadow-lg" *ngIf="showForm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">User Form</h4>
+        </div>
+
+
+
+        <div class="card-body">
+            <form [formGroup]="userroleForm" (ngSubmit)="onSubmit()">
+
+
+
+
+
+
+                <div class="row">
+
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">UserRole Name</label>
+                        <select type="text" class="form-control" formControlName="userrolename">
+                            <option value="Super Admin">Super Admin</option>
+                            <option value="Director">Director</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Employee">Employee</option>
+                        </select>
+
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Instance ID</label>
+                        <input type="number" class="form-control" formControlName="instanceid" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Created By</label>
+                        <input type="number" class="form-control" formControlName="createdby" />
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <!-- Row 6 -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Created By</label>
+                        <input type="number" class="form-control" formControlName="createdby" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Updated By</label>
+                        <input type="number" class="form-control" formControlName="updatedby" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Account ID</label>
+                        <input type="number" class="form-control" formControlName="accountid" />
+                    </div>
+                </div>
+
+
+
+
+
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success" *ngIf="!isViewMode">Submit</button>
+                    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-lg mt-2 pt-2 px-3 pb-2" *ngIf="!showForm">
+        <dx-data-grid #dataGrid id="gridContainer" [dataSource]="userroles" [showBorders]="true"
+            [rowAlternationEnabled]="true" [showColumnLines]="true" [showRowLines]="true" [remoteOperations]="false"
+            width="100%" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true">
+
+            <!-- Paging -->
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"
+                [showNavigationButtons]="true">
+            </dxo-pager>
+
+            <!-- Filters -->
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" placeholder="Search users..." [highlightCaseSensitive]="false">
+            </dxo-search-panel>
+
+            <!-- Columns -->
+            <dxi-column dataField="userroleid" caption="Userrole ID"></dxi-column>
+            <dxi-column dataField="accountid" caption="Account ID"></dxi-column>
+
+            <dxi-column dataField="instanceid" caption="Instance ID"></dxi-column>
+            <dxi-column dataField="userrolename" caption="Username"></dxi-column>
+            <!-- <dxi-column dataField="userroleid" caption="User Role ID"></dxi-column> -->
+
+
+            <!-- Action Buttons -->
+            <dxi-column caption="Actions" [allowSorting]="false" [allowFiltering]="false" alignment="center"
+                [width]="160" cellTemplate="actionTemplate">
+            </dxi-column>
+
+            <!-- Action Template -->
+            <div *dxTemplate="let rowData of 'actionTemplate'">
+                <div class="d-flex justify-content-center gap-2">
+
+                    <dx-button icon="fas fa-eye" hint="View" stylingMode="text" type="normal"
+                        (onClick)="onView(rowData.data.userroleid)">
+                    </dx-button>
+
+                    <dx-button icon="edit" hint="Edit" stylingMode="text" type="default"
+                        (onClick)="onEdit(rowData.data.userroleid)">
+                    </dx-button>
+
+                    <dx-button icon="trash" hint="Delete" stylingMode="text" type="danger"
+                        (onClick)="onDelete(rowData.data.userroleid)">
+                    </dx-button>
+
+                </div>
+            </div>
+
+        </dx-data-grid>
+    </div>
+
+
+</div>

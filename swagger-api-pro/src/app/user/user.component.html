@@ -1,0 +1,221 @@
+<div class="mt-4">
+
+    <div class="row mb-4" *ngIf="userCount !== null">
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm border-primary">
+                <div class="card-body count">
+                    <h5 class="card-title ">Total Users</h5>
+                    <h3 class="fw-bold ">{{ userCount }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!showForm" class="mb-3">
+        <button class="btn btn-primary" (click)="openForm()">
+            Add User
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </div>
+
+
+
+    <div class="card shadow-lg" *ngIf="showForm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">User Form</h4>
+        </div>
+
+
+
+        <div class="card-body">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+                <!-- Row 1 -->
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" formControlName="username" />
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <label class="form-label">Mobile</label>
+                        <input type="text" class="form-control" formControlName="usermobile" maxlength="10" />
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" formControlName="useremail" />
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" formControlName="useraddress" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" formControlName="usercity" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-control" formControlName="userstate" />
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Country</label>
+                        <input type="text" class="form-control" formControlName="usercountry" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Pincode</label>
+                        <input type="text" class="form-control" formControlName="userpincode" maxlength="6" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Role</label>
+                        <input type="text" class="form-control" formControlName="userrole" />
+                    </div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="row">
+                    <!-- <div class="col-md-4 mb-3">
+                        <label class="form-label">ASA End Date</label>
+                        <input type="datetime-local" class="form-control" formControlName="userasaenddate" />
+                    </div> -->
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">ASA Amount</label>
+                        <input type="text" class="form-control" formControlName="userasaamount" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" formControlName="userpassword" />
+                    </div>
+                </div>
+
+                <!-- Row 5 -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Forgot Password Question</label>
+                        <input type="text" class="form-control" formControlName="userforgotpwquest" />
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Forgot Password Answer</label>
+                        <input type="text" class="form-control" formControlName="userforgotpwans" />
+                    </div>
+                </div>
+
+                <!-- Row 6 -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Created By</label>
+                        <input type="number" class="form-control" formControlName="createdby" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Updated By</label>
+                        <input type="number" class="form-control" formControlName="updatedby" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Account ID</label>
+                        <input type="number" class="form-control" formControlName="accountid" />
+                    </div>
+                </div>
+
+                <!-- Row 7 -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Instance ID</label>
+                        <input type="number" class="form-control" formControlName="instanceid" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">City ID</label>
+                        <input type="number" class="form-control" formControlName="cityid" />
+                    </div>
+
+                    <!-- <div class="col-md-4 mb-3">
+                        <label class="form-label">User Role ID</label>
+                        <input type="number" class="form-control" formControlName="userroleid" />
+                    </div> -->
+                </div>
+
+
+
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success" *ngIf="!isViewMode">Submit</button>
+                    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-lg mt-2 pt-2 px-3 pb-2" *ngIf="!showForm">
+        <dx-data-grid #dataGrid id="gridContainer" [dataSource]="users" [showBorders]="true"
+            [rowAlternationEnabled]="true" [showColumnLines]="true" [showRowLines]="true" [remoteOperations]="false"
+            width="100%" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true">
+
+            <!-- Paging -->
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"
+                [showNavigationButtons]="true">
+            </dxo-pager>
+
+            <!-- Filters -->
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" placeholder="Search users..." [highlightCaseSensitive]="false">
+            </dxo-search-panel>
+
+            <!-- Columns -->
+            <dxi-column dataField="userid" caption="User ID"></dxi-column>
+            <dxi-column dataField="accountid" caption="Account ID"></dxi-column>
+            <dxi-column dataField="cityid" caption="City ID"></dxi-column>
+            <dxi-column dataField="instanceid" caption="Instance ID"></dxi-column>
+            <dxi-column dataField="username" caption="Username"></dxi-column>
+            <!-- <dxi-column dataField="userroleid" caption="User Role ID"></dxi-column> -->
+            <dxi-column dataField="useremail" caption="Email"></dxi-column>
+
+            <!-- Action Buttons -->
+            <dxi-column caption="Actions" [allowSorting]="false" [allowFiltering]="false" alignment="center"
+                [width]="160" cellTemplate="actionTemplate">
+            </dxi-column>
+
+            <!-- Action Template -->
+            <div *dxTemplate="let rowData of 'actionTemplate'">
+                <div class="d-flex justify-content-center gap-2">
+
+                    <dx-button icon="fas fa-eye" hint="View" stylingMode="text" type="normal"
+                        (onClick)="onView(rowData.data.userid)">
+                    </dx-button>
+
+                    <dx-button icon="edit" hint="Edit" stylingMode="text" type="default"
+                        (onClick)="onEdit(rowData.data.userid)">
+                    </dx-button>
+
+                    <dx-button icon="trash" hint="Delete" stylingMode="text" type="danger"
+                        (onClick)="onDelete(rowData.data.userid)">
+                    </dx-button>
+
+                </div>
+            </div>
+
+        </dx-data-grid>
+    </div>
+
+
+</div>

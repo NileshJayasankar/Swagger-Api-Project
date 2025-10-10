@@ -1,0 +1,22 @@
+.status-row {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap; /* wrap if needed on smaller screens */
+  margin-left: 200px !important;
+  padding: 3px;
+  gap: 15px; /* space between cards */
+}
+
+.status-card {
+  width: 300px !important;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
