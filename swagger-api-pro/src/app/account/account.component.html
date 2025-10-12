@@ -1,1 +1,246 @@
-<p>account works!</p>
+<div class=" mt-4">
+
+    <div class="account-button">
+
+        <!-- Add Form Button -->
+        <div *ngIf="!showForm" class="mb-3">
+            <button class="btn btn-primary" (click)="openForm()">Add Account
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="card shadow-lg" *ngIf="showForm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Account Form</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+
+
+
+                <div class="row">
+                    <!-- Company Name -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Company Name</label>
+                        <input class="form-control" formControlName="companyname" />
+                        <div class="text-danger"
+                            *ngIf="companyForm.get('companyname')?.touched && companyForm.get('companyname')?.invalid">
+                            Company Name is required
+                        </div>
+                    </div>
+
+                    <!-- Owner Name -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Owner Name</label>
+                        <input class="form-control" formControlName="ownername" />
+                        <div class="text-danger"
+                            *ngIf="companyForm.get('ownername')?.touched && companyForm.get('ownername')?.invalid">
+                            Owner Name is required
+                        </div>
+                    </div>
+
+                    <!-- Owner Mobile -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Owner Mobile</label>
+                        <input class="form-control" formControlName="ownermobile" />
+                        <div class="text-danger"
+                            *ngIf="companyForm.get('ownermobile')?.touched && companyForm.get('ownermobile')?.invalid">
+                            Enter a valid 10-digit mobile number
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="row">
+
+                    <!-- Owner Email -->
+
+                    <div class="col-md-6 mb-6">
+                        <label class="form-label">Owner Email</label>
+                        <input class="form-control" formControlName="owneremail" type="email" />
+                        <div class="text-danger"
+                            *ngIf="companyForm.get('owneremail')?.touched && companyForm.get('owneremail')?.invalid">
+                            Enter a valid email
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="col-md-4 mb-3">
+            <label class="form-label">Account ID</label>
+            <input class="form-control" formControlName="accountid" />
+          </div> -->
+
+                    <!-- License Count -->
+                    <div class="col-md-6 mb-6">
+                        <label class="form-label">License Count</label>
+                        <input class="form-control" type="number" formControlName="licensecount" />
+                    </div>
+
+                </div>
+
+
+                <!-- Address -->
+                <div class="mb-3">
+                    <label class="form-label">Company Address</label>
+                    <textarea class="form-control" rows="2" formControlName="companyaddress"></textarea>
+                </div>
+
+                <!-- City / State / Country / Pincode -->
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">City</label>
+                        <select class="form-select" formControlName="companycity" (change)="onCityChange($event)">
+                            <option value="">Select City</option>
+
+                            <option *ngFor="let city of cities" [value]="city.cityname">
+                                {{ city.cityname }}
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">State</label>
+                        <input class="form-control" formControlName="companystate" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Country</label>
+                        <input class="form-control" formControlName="companycountry" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Pincode</label>
+                        <input class="form-control" formControlName="companypincode" />
+                        <div class="text-danger"
+                            *ngIf="companyForm.get('companypincode')?.touched && companyForm.get('companypincode')?.invalid">
+                            Enter a valid 6-digit pincode
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Dates -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Created Date</label>
+                        <input class="form-control" type="date" formControlName="createddate" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Updated Date</label>
+                        <input class="form-control" type="date" formControlName="updateddate" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">cityId</label>
+                        <input class="form-control" type="number" formControlName="cityid" />
+                    </div>
+                </div>
+
+                <!-- Active Checkbox 
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" formControlName="isactive" />
+          <label class="form-check-label">Is Active</label>
+        </div> -->
+
+                <!-- Created By / Updated By 
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Created By</label>
+            <input class="form-control" formControlName="createdby" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Updated By</label>
+            <input class="form-control" formControlName="updatedby" />
+          </div>
+        </div> -->
+
+                <!-- City ID / Account ID 
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">City ID</label>
+            <select  class="form-control" formControlName="cityid" data-toggle="dropdown">
+            <option value="">Select a city</option>
+                <option value="1">HTML</option>
+                <option value="2">CSS</option>
+                <option value="3">JavaScript</option>
+            </select>
+        
+          </div> -->
+
+
+
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success" [disabled]="!companyForm.valid">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-secondary" (click)="onCancel()">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- DevExtreme Grid -->
+    <div class="card shadow-lg mt-2 pt-2 px-3 pb-2" *ngIf="!showForm">
+        <dx-data-grid #dataGrid id="gridContainer" [dataSource]="accountList" [showBorders]="true"
+            [rowAlternationEnabled]="true" [showColumnLines]="true" [showRowLines]="true" [remoteOperations]="false"
+            width="100%" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true">
+
+            <!-- Paging & Pager -->
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"
+                [showNavigationButtons]="true">
+            </dxo-pager>
+
+            <!-- Filters & Search -->
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" placeholder="Search all columns..."
+                [highlightCaseSensitive]="false"></dxo-search-panel>
+
+            <!-- Columns -->
+            <dxi-column dataField="accountid" caption="Account ID"></dxi-column>
+            <dxi-column dataField="companyname" caption="Company Name"></dxi-column>
+            <dxi-column dataField="ownername" caption="Owner Name"></dxi-column>
+            <dxi-column dataField="cityid" caption="City ID"></dxi-column>
+
+            <dxi-column caption="Action" [allowSorting]="false" [allowFiltering]="false" alignment="center"
+                [width]="160" cellTemplate="actionTemplate">
+            </dxi-column>
+
+            <div *dxTemplate=" let rowData of 'actionTemplate';let i = Index">
+                <div class="d-flex justify-content-center gap-2">
+
+                    <!-- View -->
+                    <dx-button icon="fa fa-eye" hint="View" stylingMode="text" type="normal"
+                        (onClick)="onView(rowData.data?.accountid)">
+                    </dx-button>
+
+
+
+                    <!-- Edit -->
+                    <dx-button icon="edit" hint="Edit" stylingMode="text" type="default"
+                        (onClick)="onEdit(rowData.data.accountid)">
+                    </dx-button>
+
+                    <!-- Delete -->
+                    <dx-button icon="trash" hint="Delete" stylingMode="text" type="danger"
+                        (onClick)="onDelete(rowData.data.accountid)">
+                    </dx-button>
+
+                </div>
+            </div>
+        </dx-data-grid>
+    </div>
+
+</div>
