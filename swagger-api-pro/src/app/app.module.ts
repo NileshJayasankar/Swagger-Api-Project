@@ -13,6 +13,8 @@ import { GstComponent } from './gst/gst.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserroleComponent } from './userrole/userrole.component';
+import { VatComponent } from './vat/vat.component';
+// import { DigitcardComponent } from './digitcard/digitcard.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { UserroleComponent } from './userrole/userrole.component';
     UserComponent,
     GstComponent,
     UserroleComponent,
+    VatComponent,
+    // DigitcardComponent
     
   ],
   imports: [

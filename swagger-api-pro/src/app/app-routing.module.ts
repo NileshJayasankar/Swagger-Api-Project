@@ -7,6 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { GstComponent } from './gst/gst.component';
 import { UserroleComponent } from './userrole/userrole.component';
+import { VatComponent } from './vat/vat.component';
+// import { DigitcardComponent } from './digitcard/digitcard.component';
 
 const routes: Routes = [
   { path: 'city', component: CityComponent },
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'userrole', component: UserroleComponent },
   { path: 'gst', component: GstComponent },
+  { path: 'vat', component: VatComponent },
+  //  {path: 'digitcard', component: DigitcardComponent },
 ];
 
 @NgModule({

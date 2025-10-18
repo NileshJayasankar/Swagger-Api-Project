@@ -1,0 +1,26 @@
+::ng-deep .dx-datagrid-headers .dx-header-row {
+    background-color: rgb(60, 0, 255);
+    color: #FFF;
+}
+
+::ng-deep .dx-datagrid .dx-header-filter-empty{
+    color:beige ;
+}
+
+.account-button{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.count{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(60, 0, 255);
+    color:white;
+    border-radius: 10px;
+
+
+}
+.card-title{
+    font-size: 32px;
+}

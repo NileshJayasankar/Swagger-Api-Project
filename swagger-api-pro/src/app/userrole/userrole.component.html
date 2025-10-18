@@ -2,7 +2,7 @@
 
     <div class="row mb-4" *ngIf="userroleCount !== null">
         <div class="col-md-3">
-            <div class="card text-center shadow-sm border-primary">
+            <div class="card text-center shadow-sm">
                 <div class="card-body count">
                     <h5 class="card-title ">Total Userroles</h5>
                     <h3 class="fw-bold ">{{ userroleCount }}</h3>
@@ -22,7 +22,7 @@
 
     <div class="card shadow-lg" *ngIf="showForm">
         <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">User Form</h4>
+            <h4 class="mb-0">Userrole Form</h4>
         </div>
 
 
@@ -39,26 +39,37 @@
 
 
                     <div class="col-md-4 mb-3">
-                        <label class="form-label">UserRole Name</label>
-                        <select type="text" class="form-control" formControlName="userrolename">
-                            <option value="Super Admin">Super Admin</option>
+                        <label class="form-label">UserRole </label>
+                        <input type="text" class="form-control" formControlName="userrolename" />
+                        <!-- <option value="Super Admin">Super Admin</option>
                             <option value="Director">Director</option>
                             <option value="Manager">Manager</option>
-                            <option value="Employee">Employee</option>
+                            <option value="Employee">Employee</option> -->
+
+
+
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Instance Name</label>
+                        <select type="text" class="form-control" formControlName="instancename"
+                            (change)="onInstanceSelect($event)">
+                            <option *ngFor="let i of instances" [value]="i.instancename">
+                                {{ i.instancename }}
+                            </option>
                         </select>
-
-
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label class="form-label">Instance ID</label>
-                        <input type="number" class="form-control" formControlName="instanceid" />
+                        <label class="form-label">Account NAME</label>
+                        <input type="text" class="form-control" formControlName="accountname" />
                     </div>
 
-                    <div class="col-md-4 mb-3">
+                    <!-- <div class="col-md-4 mb-3">
                         <label class="form-label">Created By</label>
                         <input type="number" class="form-control" formControlName="createdby" />
-                    </div>
+                    </div> -->
                 </div>
 
 
@@ -69,20 +80,20 @@
 
                 <!-- Row 6 -->
                 <div class="row">
-                    <div class="col-md-4 mb-3">
+                    <!-- <div class="col-md-4 mb-3">
                         <label class="form-label">Created By</label>
                         <input type="number" class="form-control" formControlName="createdby" />
-                    </div>
+                    </div> -->
 
-                    <div class="col-md-4 mb-3">
+                    <!-- <div class="col-md-4 mb-3">
                         <label class="form-label">Updated By</label>
                         <input type="number" class="form-control" formControlName="updatedby" />
-                    </div>
+                    </div> -->
 
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Account ID</label>
-                        <input type="number" class="form-control" formControlName="accountid" />
-                    </div>
+                    <!-- <div class="col-md-4 mb-3">
+                        <label class="form-label">Account NAME</label>
+                        <input type="text" class="form-control" formControlName="accountname" />
+                    </div> -->
                 </div>
 
 
@@ -111,44 +122,54 @@
                 [showNavigationButtons]="true">
             </dxo-pager>
 
-            <!-- Filters -->
-            <dxo-filter-row [visible]="true"></dxo-filter-row>
-            <dxo-header-filter [visible]="true"></dxo-header-filter>
-            <dxo-search-panel [visible]="true" placeholder="Search users..." [highlightCaseSensitive]="false">
-            </dxo-search-panel>
+            <!-- <dxo-paging [pageSize]="10"> </dxo-paging>
+            <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" [displayMode]="displayMode"
+                [showPageSizeSelector]="showPageSizeSelector" [showInfo]="showInfo"
+                [showNavigationButtons]="showNavButtons"></dxo-pager>
 
-            <!-- Columns -->
-            <dxi-column dataField="userroleid" caption="Userrole ID"></dxi-column>
-            <dxi-column dataField="accountid" caption="Account ID"></dxi-column>
+            <dx-check-box id="showNavButtons" text="Show Navigation Buttons" [disabled]="isCompactMode"
+                [(value)]="showNavButtons"></dx-check-box> -->
 
-            <dxi-column dataField="instanceid" caption="Instance ID"></dxi-column>
-            <dxi-column dataField="userrolename" caption="Username"></dxi-column>
-            <!-- <dxi-column dataField="userroleid" caption="User Role ID"></dxi-column> -->
+                <!-- Filters -->
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true" placeholder="Search users..." [highlightCaseSensitive]="false">
+                </dxo-search-panel>
+
+                <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+
+                <!-- Columns -->
+                <dxi-column dataField="userroleid" caption="Userrole ID"></dxi-column>
+                <dxi-column dataField="accountid" caption="Account NAME"></dxi-column>
+
+                <dxi-column dataField="instanceid" caption="Instance NAME"></dxi-column>
+                <dxi-column dataField="userrolename" caption="Userrolename"></dxi-column>
+                <!-- <dxi-column dataField="userroleid" caption="User Role ID"></dxi-column> -->
 
 
-            <!-- Action Buttons -->
-            <dxi-column caption="Actions" [allowSorting]="false" [allowFiltering]="false" alignment="center"
-                [width]="160" cellTemplate="actionTemplate">
-            </dxi-column>
+                <!-- Action Buttons -->
+                <dxi-column caption="Actions" [allowSorting]="false" [allowFiltering]="false" alignment="center"
+                    [width]="160" cellTemplate="actionTemplate">
+                </dxi-column>
 
-            <!-- Action Template -->
-            <div *dxTemplate="let rowData of 'actionTemplate'">
-                <div class="d-flex justify-content-center gap-2">
+                <!-- Action Template -->
+                <div *dxTemplate="let rowData of 'actionTemplate'">
+                    <div class="d-flex justify-content-center gap-2">
 
-                    <dx-button icon="fas fa-eye" hint="View" stylingMode="text" type="normal"
-                        (onClick)="onView(rowData.data.userroleid)">
-                    </dx-button>
+                        <dx-button icon="fas fa-eye" hint="View" stylingMode="text" type="normal"
+                            (onClick)="onView(rowData.data.userroleid)">
+                        </dx-button>
 
-                    <dx-button icon="edit" hint="Edit" stylingMode="text" type="default"
-                        (onClick)="onEdit(rowData.data.userroleid)">
-                    </dx-button>
+                        <dx-button icon="edit" hint="Edit" stylingMode="text" type="default"
+                            (onClick)="onEdit(rowData.data.userroleid)">
+                        </dx-button>
 
-                    <dx-button icon="trash" hint="Delete" stylingMode="text" type="danger"
-                        (onClick)="onDelete(rowData.data.userroleid)">
-                    </dx-button>
+                        <dx-button icon="trash" hint="Delete" stylingMode="text" type="danger"
+                            (onClick)="onDelete(rowData.data.userroleid)">
+                        </dx-button>
 
+                    </div>
                 </div>
-            </div>
 
         </dx-data-grid>
     </div>

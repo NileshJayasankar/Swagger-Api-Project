@@ -1,5 +1,16 @@
 <div class=" mt-4">
 
+    <div class="mb-4" *ngIf="accountCount !== null">
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm ">
+                <div class="card-body count">
+                    <h5 class="card-title ">Total Account</h5>
+                    <h3 class="fw-bold ">{{ accountCount }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="account-button">
 
         <!-- Add Form Button -->
@@ -208,6 +219,7 @@
             <dxo-search-panel [visible]="true" placeholder="Search all columns..."
                 [highlightCaseSensitive]="false"></dxo-search-panel>
 
+            <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
             <!-- Columns -->
             <dxi-column dataField="accountid" caption="Account ID"></dxi-column>
             <dxi-column dataField="companyname" caption="Company Name"></dxi-column>

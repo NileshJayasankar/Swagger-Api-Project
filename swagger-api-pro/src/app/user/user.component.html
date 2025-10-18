@@ -1,11 +1,22 @@
 <div class="mt-4">
 
-    <div class="row mb-4" *ngIf="userCount !== null">
+    <div class="mb-4" *ngIf="userCount !== null">
         <div class="col-md-3">
-            <div class="card text-center shadow-sm border-primary">
+            <div class="card text-center shadow-sm ">
                 <div class="card-body count">
                     <h5 class="card-title ">Total Users</h5>
                     <h3 class="fw-bold ">{{ userCount }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4" *ngIf="userRoleCounts.length > 0">
+        <div class="col-md-3" *ngFor="let role of userRoleCounts">
+            <div class="card text-center shadow-sm">
+                <div class="card-body count">
+                    <h5 class="card-title">{{ role.role }}</h5>
+                    <h3 class="fw-bold">{{ role.count }}</h3>
                 </div>
             </div>
         </div>
@@ -80,7 +91,13 @@
 
                     <div class="col-md-4 mb-3">
                         <label class="form-label">Role</label>
-                        <input type="text" class="form-control" formControlName="userrole" />
+                        <select type="text" class="form-control" formControlName="userrolename"
+                            (change)="onRoleChange($event)">
+                            <option *ngFor="let r of userroles" [value]="r.userrolename">
+                                {{ r.userrolename }}
+                            </option>
+
+                        </select>
                     </div>
                 </div>
 
@@ -100,6 +117,10 @@
                         <label class="form-label">Password</label>
                         <input type="password" class="form-control" formControlName="userpassword" />
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Account NAME</label>
+                        <input type="text" class="form-control" formControlName="accountname" />
+                    </div>
                 </div>
 
                 <!-- Row 5 -->
@@ -117,7 +138,7 @@
 
                 <!-- Row 6 -->
                 <div class="row">
-                    <div class="col-md-4 mb-3">
+                    <!-- <div class="col-md-4 mb-3">
                         <label class="form-label">Created By</label>
                         <input type="number" class="form-control" formControlName="createdby" />
                     </div>
@@ -125,19 +146,25 @@
                     <div class="col-md-4 mb-3">
                         <label class="form-label">Updated By</label>
                         <input type="number" class="form-control" formControlName="updatedby" />
-                    </div>
+                    </div> -->
 
-                    <div class="col-md-4 mb-3">
+                    <!-- <div class="col-md-4 mb-3">
                         <label class="form-label">Account ID</label>
                         <input type="number" class="form-control" formControlName="accountid" />
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Row 7 -->
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label class="form-label">Instance ID</label>
-                        <input type="number" class="form-control" formControlName="instanceid" />
+                        <label class="form-label">Instance NAME</label>
+                        <select type="number" class="form-control" formControlName="instancename"
+                            (change)="onInstanceSelect($event)">
+                            <option value="">-- Select Instance --</option>
+                            <option *ngFor="let i of instances" [value]="i.instancename">
+                                {{ i.instancename }}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="col-md-4 mb-3">
@@ -181,10 +208,12 @@
             <dxo-search-panel [visible]="true" placeholder="Search users..." [highlightCaseSensitive]="false">
             </dxo-search-panel>
 
+            <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+
             <!-- Columns -->
             <dxi-column dataField="userid" caption="User ID"></dxi-column>
             <dxi-column dataField="accountid" caption="Account ID"></dxi-column>
-            <dxi-column dataField="cityid" caption="City ID"></dxi-column>
+            <dxi-column dataField="usercity" caption="City "></dxi-column>
             <dxi-column dataField="instanceid" caption="Instance ID"></dxi-column>
             <dxi-column dataField="username" caption="Username"></dxi-column>
             <!-- <dxi-column dataField="userroleid" caption="User Role ID"></dxi-column> -->

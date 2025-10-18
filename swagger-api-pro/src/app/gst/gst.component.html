@@ -1,1 +1,182 @@
-<p>gst works!</p>
+<div class="mt-2">
+
+    <div class="mb-4" *ngIf="gstCount !== null">
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm ">
+                <div class="card-body count">
+                    <h5 class="card-title ">Total Gst</h5>
+                    <h3 class="fw-bold ">{{ gstCount }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-button">
+        <!-- Add Form Button -->
+        <div *ngIf="!showForm" class="mb-3">
+            <button class="btn btn-primary" (click)="openForm()">Add GST
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="card shadow-lg" *ngIf="showForm">
+        <!-- <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">GST Form</h4>
+    </div> -->
+
+        <div class="card-body">
+            <form [formGroup]="gstForm" (ngSubmit)="onSubmit()">
+
+                <!-- Row 1 -->
+                <div class="row">
+                    <!-- <div class="col-md-4 mb-3">
+            <label class="form-label">GST ID</label>
+            <input type="text" class="form-control" formControlName="gstid" />
+            <div class="text-danger" *ngIf="gstForm.get('gstid')?.touched && gstForm.get('gstid')?.invalid">
+              GST ID is required
+            </div> 
+          </div> -->
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Total GST %</label>
+                        <input type="number" class="form-control" formControlName="totalgstpercent" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">IGST %</label>
+                        <input type="number" class="form-control" formControlName="igstpercent" />
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">CGST %</label>
+                        <input type="number" class="form-control" formControlName="cgstpercent" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">SGST %</label>
+                        <input type="number" class="form-control" formControlName="sgstpercent" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">UGST %</label>
+                        <input type="number" class="form-control" formControlName="ugstpercent" />
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Cess %</label>
+                        <input type="number" class="form-control" formControlName="chesspercent" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Created Date</label>
+                        <input type="date" class="form-control" formControlName="createddate" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Updated Date</label>
+                        <input type="date" class="form-control" formControlName="updateddate" />
+                    </div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Created By</label>
+                        <input type="text" class="form-control" formControlName="createdby" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Updated By</label>
+                        <input type="text" class="form-control" formControlName="updatedby" />
+                    </div>
+
+                    <!-- <div class="col-md-4 mb-3">
+            <label class="form-label">User ID</label>
+            <input type="text" class="form-control" formControlName="userid" />
+          </div>
+        </div> -->
+
+                    <!-- Row 5 -->
+                    <!-- <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label">GST Active</label>
+            <select class="form-control" formControlName="gstisactive">
+              <option value="true">Active</option>
+              <option value="false">Inactive</option>
+            </select>
+          </div>
+        </div> -->
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-success" *ngIf="!isViewMode">Submit</button>
+                        <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Table (GST Data List) -->
+    <div class="card shadow-lg mt-2 pt-2 px-3 pb-2" *ngIf="!showForm">
+        <dx-data-grid #dataGrid id="gridContainer" [dataSource]="gstList" [showBorders]="true"
+            [rowAlternationEnabled]="true" [showColumnLines]="true" [showRowLines]="true" [remoteOperations]="false"
+            width="100%" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true">
+
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" 
+                [showNavigationButtons]="true">
+            </dxo-pager>
+
+            <!-- <dxo-paging [pageSize]="10"> </dxo-paging>
+            <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" [displayMode]="displayMode"
+                [showPageSizeSelector]="showPageSizeSelector" [showInfo]="showInfo"
+                [showNavigationButtons]="showNavButtons">
+            </dxo-pager> -->
+
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" placeholder="Search all columns..."
+                [highlightCaseSensitive]="false"></dxo-search-panel>
+
+            <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+            <!-- GST Columns -->
+            <dxi-column dataField="gstid" caption="GST ID"></dxi-column>
+            <dxi-column dataField="totalgstpercent" caption="Total GST %"></dxi-column>
+            <dxi-column dataField="igstpercent" caption="IGST %"></dxi-column>
+            <dxi-column dataField="cgstpercent" caption="CGST %"></dxi-column>
+            <dxi-column dataField="sgstpercent" caption="SGST %"></dxi-column>
+            <dxi-column dataField="ugstpercent" caption="UGST %"></dxi-column>
+            <dxi-column dataField="chesspercent" caption="Cess %"></dxi-column>
+            <dxi-column dataField="createdby" caption="Created By"></dxi-column>
+            <dxi-column dataField="updatedby" caption="Updated By"></dxi-column>
+            <!-- <dxi-column dataField="userid" caption="User ID"></dxi-column>
+      <dxi-column dataField="gstisactive" caption="Active"></dxi-column> -->
+
+            <!-- Action Column -->
+            <dxi-column caption="Action" [allowSorting]="false" [allowFiltering]="false" alignment="center"
+                [width]="160" cellTemplate="actionTemplate"></dxi-column>
+
+            <div *dxTemplate="let rowData of 'actionTemplate'">
+                <div class="d-flex justify-content-center gap-2">
+                    <dx-button icon="fas fa-eye" hint="View" stylingMode="text" type="normal"
+                        (onClick)="onView(rowData.data?.gstid)"></dx-button>
+                    <dx-button icon="edit" hint="Edit" stylingMode="text" type="default"
+                        (onClick)="onEdit(rowData.data.gstid)"></dx-button>
+                    <dx-button icon="trash" hint="Delete" stylingMode="text" type="danger"
+                        (onClick)="onDelete(rowData.data.gstid)"></dx-button>
+                </div>
+            </div>
+
+        </dx-data-grid>
+    </div>
+
+</div>

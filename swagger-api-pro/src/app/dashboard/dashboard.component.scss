@@ -2,14 +2,16 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap; /* wrap if needed on smaller screens */
-  margin-left: 200px !important;
+  margin-left: 0px !important;
+//   margin-top: 50px !important;
   padding: 3px;
+  padding-left: 10px;
   gap: 15px; /* space between cards */
 }
 
 .status-card {
-  width: 300px !important;
-  height: 60px;
+  width: 400px !important;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,4 +21,98 @@
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   cursor: pointer;
+}
+
+#userBtn{
+    color:white;
+    // background-color:#001f3f;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-size: 35px;
+}
+
+#userroleBtn{
+    color:white;
+    // background-color:#001f3f;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    font-size: 35px;
+}
+
+#instanceBtn{
+    color:white;
+    // background-color:#001f3f;
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+    font-size: 35px;
+}
+
+#accountBtn{
+    color:white;
+    // background-color:#001f3f;
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+    font-size: 35px;
+}
+
+#cityBtn{
+    color:white;
+    // background-color:#001f3f;
+    background: linear-gradient(135deg, #fc5c7d, #6a82fb);
+    font-size: 35px;
+}
+
+#vatBtn{
+    color:white;
+    // background-color:#001f3f;
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    font-size: 35px;
+}
+
+#gstBtn{
+    color:white;
+    // background-color:#001f3f;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    font-size: 35px;
+}
+
+#userBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+#gstBtn:hover{
+    transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+
+}
+
+#vatBtn:hover{
+
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+
+
+}
+
+#cityBtn:hover{
+
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+
+}
+
+#accountBtn:hover{
+
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+
+}
+
+#instanceBtn:hover{
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+
+}
+
+#userroleBtn:hover{
+    transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+
 }

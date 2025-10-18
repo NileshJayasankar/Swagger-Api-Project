@@ -1,5 +1,16 @@
 <div class="mt-2">
 
+    <div class="mb-4" *ngIf="vatCount !== null">
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm ">
+                <div class="card-body count">
+                    <h5 class="card-title ">Total Vat</h5>
+                    <h3 class="fw-bold ">{{ vatCount }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="account-button">
         <!-- Add Form Button -->
         <div *ngIf="!showForm" class="mb-3">
@@ -121,6 +132,8 @@
         <dxo-search-panel [visible]="true" placeholder="Search all columns..."
             [highlightCaseSensitive]="false"></dxo-search-panel>
 
+         <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+         
         <!-- GST Columns -->
         <dxi-column dataField="vatid" caption="VAT ID"></dxi-column>
         <dxi-column dataField="userid" caption="User Id"></dxi-column>

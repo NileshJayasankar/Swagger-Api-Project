@@ -1,1 +1,301 @@
-<p>instance works!</p>
+<div class="mt-4">
+
+    <div class="mb-4" *ngIf="instanceCount !== null">
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm ">
+                <div class="card-body count">
+                    <h5 class="card-title ">Total Instance</h5>
+                    <h3 class="fw-bold ">{{ instanceCount }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-button">
+
+        <!-- Add Form Button -->
+        <div *ngIf="!showForm" class="mb-3">
+            <button class="btn btn-primary" (click)="openForm()">Add Instance
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="card shadow-lg" *ngIf="showForm">
+
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Instance Form</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="instanceForm" (ngSubmit)="onSubmit()">
+
+
+
+                <div class="row">
+                    <!-- Instance Name -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Instance Name</label>
+                        <input class="form-control" formControlName="instancename" />
+                        <div class="text-danger"
+                            *ngIf="instanceForm.get('instancename')?.touched && instanceForm.get('instancename')?.invalid">
+                            Company Name is required
+                        </div>
+                    </div>
+
+                    <!-- Owner Name -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Owner Name</label>
+                        <input class="form-control" formControlName="ownername" />
+                        <div class="text-danger"
+                            *ngIf="instanceForm.get('ownername')?.touched && instanceForm.get('ownername')?.invalid">
+                            Owner Name is required
+                        </div>
+                    </div>
+
+                    <!-- Owner Mobile -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Owner Mobile</label>
+                        <input class="form-control" formControlName="ownermobile" />
+                        <div class="text-danger"
+                            *ngIf="instanceForm.get('ownermobile')?.touched && instanceForm.get('ownermobile')?.invalid">
+                            Enter a valid 10-digit mobile number
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="row">
+
+                    <!-- Owner Email -->
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Owner Email</label>
+                        <input class="form-control" formControlName="owneremail" type="email" />
+                        <div class="text-danger"
+                            *ngIf="instanceForm.get('owneremail')?.touched && instanceForm.get('owneremail')?.invalid">
+                            Enter a valid email
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Account ID</label>
+                        <select class="form-select" formControlName="accountid" (change)="onAccountSelect($event)">
+                            <!-- <option value="">-- Select Account --</option> -->
+                            <option *ngFor="let acc of accountList" [value]="acc.accountid">
+                                {{ acc.accountid }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">InstanceVAT NO</label>
+                        <input class="form-control" type="number" formControlName="instancevatno" />
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">InstanceFSSAI NO</label>
+                        <input class="form-control" type="number" formControlName="instancefssaino" />
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <!-- Manager Name -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Manager Name</label>
+                        <input class="form-control" formControlName="managername" />
+                        <div class="text-danger"
+                            *ngIf="instanceForm.get('managername')?.touched && instanceForm.get('managername')?.invalid">
+                            Manager Name is required
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Manager Email</label>
+                        <input class="form-control" formControlName="manageremail" type="email" />
+                        <div class="text-danger"
+                            *ngIf="instanceForm.get('manageremail')?.touched && instanceForm.get('manageremail')?.invalid">
+                            Enter a valid email
+                        </div>
+                    </div>
+
+                    <!-- Owner Mobile -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Manager Mobile</label>
+                        <input class="form-control" formControlName="managermobile" />
+                        <div class="text-danger"
+                            *ngIf="instanceForm.get('managermobile')?.touched && instanceForm.get('managermobile')?.invalid">
+                            Enter a valid 10-digit mobile number
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Address -->
+                <div class="mb-3">
+                    <label class="form-label">Instance Address</label>
+                    <textarea class="form-control" rows="2" formControlName="instanceaddress"></textarea>
+                </div>
+
+                <!-- City / State / Country / Pincode -->
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">City</label>
+                        <input class="form-select" formControlName="instancecity" />
+
+
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">State</label>
+                        <input class="form-control" formControlName="instancestate" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Country</label>
+                        <input class="form-control" formControlName="instancecountry" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Pincode</label>
+                        <input class="form-control" formControlName="instancepincode" />
+                        <div class="text-danger"
+                            *ngIf="instanceForm.get('companypincode')?.touched && instanceForm.get('companypincode')?.invalid">
+                            Enter a valid 6-digit pincode
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Dates -->
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Created Date</label>
+                        <input class="form-control" type="date" formControlName="createddate" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Updated Date</label>
+                        <input class="form-control" type="date" formControlName="updateddate" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">cityId</label>
+                        <input class="form-control" type="number" formControlName="cityid" />
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Instancesales Amount</label>
+                        <input class="form-control" type="number" formControlName="instancesalesamount" />
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Instancesales Date</label>
+                        <input class="form-control" type="date" formControlName="instancesalesdate" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Instanceasaend Date</label>
+                        <input class="form-control" type="date" formControlName="instanceasaenddate" />
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Instanceasa Amount</label>
+                        <input class="form-control" type="number" formControlName="instanceasaamount" />
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">InstanceGST NO</label>
+                        <input class="form-control" type="number" formControlName="instancegstno" />
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success" [disabled]="!instanceForm.valid">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-secondary" (click)="onCancel()">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="card shadow-lg mt-2 pt-2 px-3 pb-2" *ngIf="!showForm">
+
+
+        <div class="card-body">
+            <dx-data-grid #dataGrid id="gridContainer" [dataSource]="instances" [showBorders]="true"
+                [rowAlternationEnabled]="true" [showColumnLines]="true" [showRowLines]="true" [remoteOperations]="false"
+                width="100%" [allowColumnReordering]="true" [columnAutoWidth]="true">
+                <!-- <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager> -->
+
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"
+                    [showNavigationButtons]="true">
+                </dxo-pager>
+
+                <!-- Filters -->
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true" placeholder="Search " [highlightCaseSensitive]="false">
+                </dxo-search-panel>
+
+                <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+
+                <dxi-column dataField="instanceid" caption="Instance ID" [width]="100"></dxi-column>
+                <dxi-column dataField="accountid" caption="Account ID" [width]="100"></dxi-column>
+                <dxi-column dataField="instancename" caption="Instance Name"></dxi-column>
+                <dxi-column dataField="ownername" caption="Owner Name"></dxi-column>
+                <dxi-column dataField="managername" caption="Manager Name"></dxi-column>
+
+
+                <!-- ACTION BUTTONS -->
+                <dxi-column caption="Actions" [width]="200" cellTemplate="actionTemplate"></dxi-column>
+
+                <div *dxTemplate="let rowData of 'actionTemplate'">
+                    <div class="d-flex justify-content-center gap-2">
+
+                        <dx-button icon="fas fa-eye" hint="View" stylingMode="text" type="normal"
+                            (onClick)="onView(rowData.data?.instanceid)"></dx-button>
+                        <dx-button icon="edit" hint="Edit" stylingMode="text" type="default"
+                            (onClick)="onEdit(rowData.data.instanceid)"></dx-button>
+                        <dx-button icon="trash" hint="Delete" stylingMode="text" type="danger"
+                            (onClick)="onDelete(rowData.data.instanceid)"></dx-button>
+
+                    </div>
+
+                </div>
+            </dx-data-grid>
+        </div>
+    </div>
+
+
+
+</div>

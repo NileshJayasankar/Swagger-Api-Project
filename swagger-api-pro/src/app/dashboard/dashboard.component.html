@@ -1,9 +1,49 @@
 <div class="status-row">
-    <div id="draftBtn" class="col-md-3 status-card draft"><b>DRAFT</b> <b>0</b> <i class="fa-solid fa-file"></i></div>
-    <div id="pendingBtn" class="col-md-3 status-card pending"><b>PENDING</b> <b>3</b> <i class="fa-solid fa-clock"></i>
+
+    <div id="userBtn" class="col-md-3 status-card draft"  routerLink="/user">
+        <span class="fw-bold title ">Total Users</span>
+        <span class="fw-bold ">{{ userCount }}</span>
+        
     </div>
-    <div id="approvedBtn" class="col-md-3 status-card approved"><b>APPROVED</b> <b>22</b> <i
-        class="fa-solid fa-check"></i></div>
-    <div id="rejectedBtn" class="col-md-3 status-card rejected"><b>REJECTED</b> <b>2</b> <i
-        class="fa-solid fa-xmark"></i></div>
-  </div>
+
+    <div id="userroleBtn" class="col-md-3 status-card draft" routerLink="/userrole">
+        
+        <span class="fw-bold title ">Total U-Role</span>
+        <span class="fw-bold ">{{ userroleCount }}</span>
+        
+    </div> 
+
+    <div id="instanceBtn" class="col-md-3 status-card draft" routerLink="/instance">
+        <span class="fw-bold title ">Total Instance</span>
+        <span class="fw-bold ">{{ instanceCount }}</span>
+        
+    </div> 
+
+    <div id="accountBtn" class="col-md-3 status-card draft" routerLink="/account" >
+        <span class="fw-bold title ">Total Account</span>
+        <span class="fw-bold ">{{ accountCount }}</span>
+        
+    </div> 
+
+    <div id="cityBtn" class="col-md-3 status-card draft" routerLink="/city">
+        <span class="fw-bold title ">Total City</span>
+        <span class="fw-bold ">{{ cityCount }}</span>
+        
+    </div> 
+
+    <div id="vatBtn" class="col-md-3 status-card draft" routerLink="/vat">
+        <span class="fw-bold title ">Total Vat</span>
+        <span class="fw-bold ">{{ vatCount }}</span>
+        
+    </div> 
+
+    <div id="gstBtn" class="col-md-3 status-card draft" routerLink="/gst">
+        <span class="fw-bold title ">Total Gst</span>
+        <span class="fw-bold ">{{ gstCount }}</span>
+        
+    </div> 
+
+
+
+    
+</div>

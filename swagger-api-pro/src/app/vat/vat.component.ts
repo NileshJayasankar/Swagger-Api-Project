@@ -15,6 +15,7 @@ export class VatComponent implements OnInit{
   selectedVatId: number | null = null;
   showForm: boolean = false;
   isViewMode: boolean = false;
+  vatCount: number | null = null;
 
   baseUrl = 'http://49.50.112.46:3002';
 
@@ -31,6 +32,10 @@ export class VatComponent implements OnInit{
     });
 
     this.loadVatList();
+
+    this.loadvatCount();
+
+    
   }
 
   // Load all VAT entries
@@ -167,6 +172,18 @@ export class VatComponent implements OnInit{
     this.vatForm.reset();
     this.showForm = false;
     this.selectedVatId = null;
+  }
+
+  loadvatCount() {
+    this.http.get<any>(`${this.baseUrl}/vat/counts`).subscribe({
+      next: (res) => {
+        this.vatCount = res.totalVat; // <-- mapping your JSON key
+        console.log('Total Users:', this.vatCount);
+      },
+      error: (err) => {
+        console.error('Error fetching user count:', err);
+      }
+    });
   }
 
 }
